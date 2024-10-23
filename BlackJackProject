@@ -1,5 +1,6 @@
-import java.util.Scanner;
 
 //Black Jack Project
+
 //Add Scanner Object
+import java.util.Scanner;
 //Create Class
