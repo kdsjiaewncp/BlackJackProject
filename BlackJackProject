@@ -2,11 +2,28 @@
 //Add Scanner Object
 import java.util.Scanner;
 //Import random
+//Import array lists
 //Create Class
 public class BlackJack{
 public static void main(String[]args){
 //Main Method
 //Create Scanner Object
 //Create Random Object
+//Create Array List called standardDeck
+//Display 2 random Random cards from the Standard Deck
+//Display 1 card Called dealerCards(Dont return second card value)
+//If statement if player gets an ace
+*/Inside If statement
+ask the question "Would you like the Ace to be 1 or 11
+then read user input
+update the Ace value to what the user choses
+/*
+//Ask user if they want to Hit
+*/If statement
+if user choses yes then add card to their hand & pull one random card 
+from the standard  deck
+
+//If dealarCards<=17 then run the loop
+
 }
 }
