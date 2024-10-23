@@ -1,5 +1,12 @@
 
 //Add Scanner Object
 import java.util.Scanner;
+//Import random
 //Create Class
+public class BlackJack{
+public static void main(String[]args){
 //Main Method
+//Create Scanner Object
+//Create Random Object
+}
+}
