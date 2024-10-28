@@ -2,13 +2,20 @@
 //Add Scanner Object
 import java.util.Scanner;
 //Import random
+import java.util.Random;
 //Import array lists
+import java.util.ArrayList;
 //Create Class
 public class BlackJack{
 public static void main(String[]args){
 //Main Method
 //Create Scanner Object
+System.out.println("TEXT/PROMPT GOES HERE");
+Scanner TEST = new Scanner(System.in);
+int TESTINPUT = TEST.nextInt();
 //Create Random Object
+
+
 //Create Array List called standardDeck
 //Display 2 random Random cards from the Standard Deck
 //Display 1 card Called dealerCards(Dont return second card value)
