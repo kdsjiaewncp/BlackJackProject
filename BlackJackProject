@@ -20,6 +20,8 @@ int TESTINPUT = TEST.nextInt();
 //Display 2 random Random cards from the Standard Deck
 //Display 1 card Called dealerCards(Dont return second card value)
 //If statement if player gets an ace
+//if the dealer pulls an ace choose the value that will help them the most
+//check to see if dealer or player got over 21
 */Inside If statement
 ask the question "Would you like the Ace to be 1 or 11
 then read user input
@@ -30,7 +32,8 @@ update the Ace value to what the user choses
 if user choses yes then add card to their hand & pull one random card 
 from the standard  deck
 
-//If dealarCards<=17 then run the loop
-
+//when dealarCards<=17 then run the loop
+//check again to see if dealer or player won//
+//display win or lose screen
 }
 }
