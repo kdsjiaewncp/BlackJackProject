@@ -1,2 +1,68 @@
-public class BlackJack{
-public static void main(String[]args){
+
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
+
+public class BlackJack {
+    public static void main(String[] args) {
+        // Create Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+        // Create Random object
+        Random random = new Random();
+
+        // Create an ArrayList to represent the standard deck of cards
+        ArrayList<String> standardDeck = new ArrayList<>();
+        // Populate the deck with cards (for simplicity, using numbers 1-13 for card values)
+        for (int i = 1; i <= 13; i++) {
+            standardDeck.add("Card " + i); // Replace with actual card names if desired
+        }
+
+        // Display 2 random cards from the standard deck for the player
+        String playerCard1 = drawCard(standardDeck, random);
+        String playerCard2 = drawCard(standardDeck, random);
+        System.out.println("Your cards: " + playerCard1 + " and " + playerCard2);
+
+        // Display 1 card for the dealer (don't reveal the second card yet)
+        String dealerCard1 = drawCard(standardDeck, random);
+        System.out.println("Dealer shows: " + dealerCard1);
+
+        // Check for Aces in player's hand
+        if (playerCard1.equals("Card 1") || playerCard2.equals("Card 1")) { // Assuming "Card 1" is an Ace
+            System.out.print("You got an Ace! Would you like it to be 1 or 11? ");
+            int aceValue = scanner.nextInt();
+            // Logic to set the Ace value would go here
+        }
+
+        // Ask user if they want to hit
+        System.out.print("Would you like to hit? (yes/no): ");
+        String hitResponse = scanner.next();
+        
+        // Player's turn
+        while (hitResponse.equalsIgnoreCase("yes")) {
+            String newCard = drawCard(standardDeck, random);
+            System.out.println("You drew: " + newCard);
+            // Logic to check if player's total exceeds 21 would go here
+            
+            System.out.print("Would you like to hit again? (yes/no): ");
+            hitResponse = scanner.next();
+        }
+
+        // Dealer's turn
+        // Logic for dealer drawing cards would go here, ensuring they hit if total <= 17
+        // Also check if dealer has an Ace and adjust value accordingly
+        
+        // Determine winner and display results
+        // Logic to check scores and display win/lose message would go here
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to draw a card from the deck and remove it from the deck
+    private static String drawCard(ArrayList<String> deck, Random random) {
+        int index = random.nextInt(deck.size());
+        String card = deck.get(index);
+        deck.remove(index); // Remove drawn card from the deck
+        return card;
+    }
+}
