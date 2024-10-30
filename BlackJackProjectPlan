@@ -33,8 +33,9 @@ update the Ace value to what the user choses
 */If statement
 if user choses yes then add card to their hand & pull one random card 
 from the standard  deck
-
+//if card takes player over 21 - they lose
 //when dealarCards<=17 then run the loop
+//dealer must hit on 17 if they have an ace representing 11
 //check again to see if dealer or player won//
 //display win or lose screen
 }
