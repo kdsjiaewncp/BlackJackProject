@@ -20,6 +20,7 @@ int TESTINPUT = TEST.nextInt();
 //Display 2 random Random cards from the Standard Deck
 //remove draw cards from deck
 //Display 1 card Called dealerCards(Dont return second card value)
+//remove drawn cards from deck
 //If statement if player gets an ace
 //if the dealer pulls an ace choose the value that will help them the most
 //check to see if dealer or player got over 21
