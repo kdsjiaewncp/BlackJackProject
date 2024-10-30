@@ -18,6 +18,7 @@ int TESTINPUT = TEST.nextInt();
 
 //Create Array List called standardDeck
 //Display 2 random Random cards from the Standard Deck
+//remove draw cards from deck
 //Display 1 card Called dealerCards(Dont return second card value)
 //If statement if player gets an ace
 //if the dealer pulls an ace choose the value that will help them the most
