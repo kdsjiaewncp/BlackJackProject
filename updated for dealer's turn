@@ -28,7 +28,7 @@ public class BlackJack {
         int dealerTotal = getCardValue(dealerCard1);
         System.out.println("Dealer shows: " + dealerCard1);
 
-        // Player's turn
+        // Player's turn 
         String hitResponse;
         do {
             System.out.print("Would you like to hit? (yes/no): ");
