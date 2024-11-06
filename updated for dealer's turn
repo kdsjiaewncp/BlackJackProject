@@ -28,11 +28,15 @@ public class BlackJack {
         int dealerTotal = getCardValue(dealerCard1);
         System.out.println("Dealer shows: " + dealerCard1);
 
-        // Player's turn 
+        // Player's turn
         String hitResponse;
         do {
             System.out.print("Would you like to hit? (yes/no): ");
             hitResponse = scanner.next();
+            if (!hitResponse.equals("yes") && !hitResponse.equals("no")) {
+                System.out.println("Invalid Response Try Again: ");
+            }
+            
             if (hitResponse.equalsIgnoreCase("yes")) {
                 int newCard = drawCard(standardDeck, random);
                 playerTotal += getCardValue(newCard);
@@ -43,9 +47,6 @@ public class BlackJack {
                     scanner.close();
                     return;
                 }
-            else {
-                System.out.println("Invalid response");
-            }
             }
         } while (playerTotal<=21||hitResponse.equalsIgnoreCase("no"));
 
