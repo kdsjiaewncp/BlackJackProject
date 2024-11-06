@@ -43,8 +43,11 @@ public class BlackJack {
                     scanner.close();
                     return;
                 }
+            else {
+                System.out.println("Invalid response");
             }
-        } while (hitResponse.equalsIgnoreCase("yes"));
+            }
+        } while (playerTotal<=21||hitResponse.equalsIgnoreCase("no"));
 
         // Dealer's turn: dealer must draw until reaching 17 or higher
         dealerTotal += getCardValue(dealerCard2);
