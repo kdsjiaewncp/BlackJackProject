@@ -89,9 +89,20 @@ public class BlackJack {
 
     // Method to get the value of a card
     private static int getCardValue(int card) {
+    	Scanner sc = new Scanner(System.in);
         if (card > 10) {
             return 10; // Face cards (J, Q, K) are worth 10
         }
-        return card; // Ace is worth 1 or 11 (additional logic needed for 1 or 11)
+        if (card == 1) {
+    		System.out.println("Would you like your ace to be 1 or 11?");
+    		int numberChosen = sc.nextInt();
+    		switch (numberChosen) {
+    		case 1: return 1;
+    		case 11: return 11;
+    		}
+        
     }
+		return card; // Ace is worth 1 or 11 (additional logic needed for 1 or 11)
+   
+ 
 }
