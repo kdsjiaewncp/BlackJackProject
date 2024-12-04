@@ -1,0 +1,106 @@
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
+
+public class BlackJack {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        // Create an ArrayList to represent the standard deck of cards
+        ArrayList<Integer> standardDeck = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 0; j < 4; j++) { // Four of each value for a standard deck
+                standardDeck.add(i);
+            }
+        }
+
+        // Player's initial two cards
+        int playerCard1 = drawCard(standardDeck, random);
+        int playerCard2 = drawCard(standardDeck, random);
+        int playerTotal = getCardValue(playerCard1, scanner) + getCardValue(playerCard2, scanner);
+        System.out.println("Your cards: " + playerCard1 + " and " + playerCard2);
+        System.out.println("Your total: " + playerTotal);
+
+        // Dealer's initial card
+        int dealerCard1 = drawCard(standardDeck, random);
+        int dealerCard2 = drawCard(standardDeck, random);
+        int dealerTotal = getCardValue(dealerCard1, null); // Dealer's Ace logic skipped for simplicity
+        System.out.println("Dealer shows: " + dealerCard1);
+
+        // Player's turn
+        String hitResponse;
+        do {
+            System.out.print("Would you like to hit? (yes/no): ");
+            hitResponse = scanner.next();
+            if (!hitResponse.equalsIgnoreCase("yes") && !hitResponse.equalsIgnoreCase("no")) {
+                System.out.println("Invalid response. Try again.");
+                continue;
+            }
+
+            if (hitResponse.equalsIgnoreCase("yes")) {
+                int newCard = drawCard(standardDeck, random);
+                playerTotal += getCardValue(newCard, scanner);
+                System.out.println("You drew: " + newCard);
+                System.out.println("Your total: " + playerTotal);
+                if (playerTotal > 21) {
+                    System.out.println("Bust! You exceeded 21. Dealer wins.");
+                    scanner.close();
+                    return;
+                }
+            }
+        } while (!hitResponse.equalsIgnoreCase("no") && playerTotal < 21);
+
+        // Dealer's turn: dealer must draw until reaching 17 or higher
+        dealerTotal += getCardValue(dealerCard2, null);
+        System.out.println("Dealer's hidden card: " + dealerCard2);
+        System.out.println("Dealer's total: " + dealerTotal);
+
+        while (dealerTotal < 17) {
+            int newCard = drawCard(standardDeck, random);
+            dealerTotal += getCardValue(newCard, null);
+            System.out.println("Dealer draws: " + newCard);
+            System.out.println("Dealer's total: " + dealerTotal);
+            if (dealerTotal > 21) {
+                System.out.println("Dealer busts! You win.");
+                scanner.close();
+                return;
+            }
+        }
+
+        // Determine winner
+        if (playerTotal > dealerTotal) {
+            System.out.println("You win! Your total: " + playerTotal + ", Dealer's total: " + dealerTotal);
+        } else if (playerTotal < dealerTotal) {
+            System.out.println("Dealer wins! Your total: " + playerTotal + ", Dealer's total: " + dealerTotal);
+        } else {
+            System.out.println("It's a tie! Both you and the dealer have: " + playerTotal);
+        }
+
+        scanner.close();
+    }
+
+    // Method to draw a card from the deck and remove it from the deck
+    private static int drawCard(ArrayList<Integer> deck, Random random) {
+        int index = random.nextInt(deck.size());
+        int card = deck.get(index);
+        deck.remove(index);
+        return card;
+    }
+
+    // Method to get the value of a card
+    private static int getCardValue(int card, Scanner scanner) {
+        if (card == 1 && scanner != null) { // Handle Ace logic for the player
+            System.out.println("You drew an Ace! Would you like it to be worth 1 or 11?");
+            int choice;
+            do {
+                System.out.print("Enter 1 or 11: ");
+                choice = scanner.nextInt();
+            } while (choice != 1 && choice != 11);
+            return choice;
+        } else if (card > 10) {
+            return 10; // Face cards (J, Q, K) are worth 10
+        }
+        return card; // Other cards return their face value
+    }
+}
