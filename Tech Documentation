@@ -1,0 +1,9 @@
+In this BlackJack Card game, we created a game in which we, the players, face the dealer from the casino.
+The game was new to me and some of the group members so that real-life demonstration was super useful (Credit to the professor for a great example)
+So the the way the game works is that we are handed 2 random cards and these are random cards we get from our deck from 1-10 so from that range is what we would get.
+We get 2 cards as well as the dealer from the casino. We are prompted with 2 choices we would "hit" which would draw another random card from the deck or "stand" where we keep the card we have. If we "hit" we get a random number added to our total amount. If we "stand" then no change happens to PlayerTotal.
+The Dealer does something different it will draw 2 cards and if that 17 is greater than the dealer's total it will keep "hit"ing and drawing cards until it reaches anything over 17 then it will stop drawing any cards.
+For both players, if the value goes over 21 you will Bust and lose the game.  
+When you run the code it will run and draw 2 random cards for you (The Player) and let you know the total. Now it's the dealer's turn they pick 2 random cards you will only know the Dealers first card. So now it will ask you if you want to "hit" Draw a card or "stand" by choosing yes or no.
+If you choose yes it will give you a random card and then tell you what you drew as well as your total so will the dealer. Now if you the player are less than 21 the program will ask you if you want to choose another card or not here you can choose the same "Hit" or "Stand" If you go over 21 then you BUST and lose the game
+If you choose to choose no and "Stand" the program will compare the totals of the player and the dealer and whoever is greater will win the game.
