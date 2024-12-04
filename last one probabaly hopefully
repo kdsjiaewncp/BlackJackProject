@@ -1,0 +1,116 @@
+// Here we add our java.utils in order to play the game we will need a scanner
+// The scanner will prompt the user for yes or no to hit or stand with their cards
+// The random will be used to pick a random number from 1-10
+// The arraylist will be used for our cards
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
+
+public class BlackJack {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        // Create an ArrayList to represent the standard deck of cards
+        ArrayList<Integer> standardDeck = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 0; j < 4; j++) { // Four of each value for a standard deck
+                standardDeck.add(i);
+            }
+        }
+
+        // Player's initial two cards these are randomly generated from our deck of cards
+        int playerCard1 = drawCard(standardDeck, random);
+        int playerCard2 = drawCard(standardDeck, random);
+        // Here we added the cards and added it to the playertotal
+        int playerTotal = getCardValue(playerCard1) + getCardValue(playerCard2);
+        System.out.println("Your cards: " + playerCard1 + " and " + playerCard2);
+        System.out.println("Your total: " + playerTotal);
+
+        // Dealer's initial card here it draws 2 random card
+        int dealerCard1 = drawCard(standardDeck, random);
+        int dealerCard2 = drawCard(standardDeck, random);
+        // Here as the player it will add the random number to the dealertotal and show the dealers first card
+        int dealerTotal = getCardValue(dealerCard1);
+        System.out.println("Dealer shows: " + dealerCard1);
+
+        // Player's turn Here we are asked if we want to draw another card "HIT" or "STAND" by choosing no
+        String hitResponse;
+        do {
+            System.out.print("Would you like to hit? (yes/no): ");
+            hitResponse = scanner.next();
+            if (!hitResponse.equalsIgnoreCase("yes") && !hitResponse.equalsIgnoreCase("no")) {
+                //Anything else will prompt invalid response and ask you to try again for yes or no
+                System.out.println("Invalid Response Try Again: ");
+            }
+            // if the response is yes it will draw a new card and name it as int newCard this card will be added to our player total
+            else if (hitResponse.equalsIgnoreCase("yes")) {
+                int newCard = drawCard(standardDeck, random);
+                playerTotal += getCardValue(newCard);
+                // Prints out what card we got randomly and tell us the total
+                System.out.println("You drew: " + newCard);
+                System.out.println("Your total: " + playerTotal);
+                // if the playerTotal becomes greater than 21 it will print out BUST! and let you know the dealer wins
+                if (playerTotal > 21) {
+                    System.out.println("Bust! You exceeded 21. Dealer wins.");
+                    scanner.close();
+                    return;
+                }
+            }
+        } while (!(playerTotal==21)&&!hitResponse.equalsIgnoreCase("no"));
+
+        // Dealer's turn: dealer must draw until reaching 17 or higher
+        dealerTotal += getCardValue(dealerCard2);
+        // Here it will tell use the cards the dealer has drawn
+        System.out.println("Dealer's hidden card: " + dealerCard2);
+        System.out.println("Dealer's total: " + dealerTotal);
+
+        // Here we make a while loop showing that if the dealerTotal is less than 17 they will drawn another card
+        while (dealerTotal < 17) {
+            int newCard = drawCard(standardDeck, random);
+            dealerTotal += getCardValue(newCard);
+            System.out.println("Dealer draws: " + newCard);
+            System.out.println("Dealer's total: " + dealerTotal);
+            // If the dealer draws a card and their total is greater than 21 it will let us know the Dealer BUSTS! and the player wins
+            if (dealerTotal > 21) {
+                System.out.println("Dealer busts! You win.");
+                scanner.close();
+                return;
+            }
+        }
+
+        // Determine winner Here is where it will determine the winner if you stand the it will use if statements
+        // Here it will make it so the higher total will win if the playerTotal is greater player wins
+        // If the PlayerTotal is lesser than the dealerTotal the dealer wins
+        
+        if (playerTotal > dealerTotal) {
+            System.out.println("You win! Your total: " + playerTotal + ", Dealer's total: " + dealerTotal);
+        } else if (playerTotal < dealerTotal) {
+            System.out.println("Dealer wins! Your total: " + playerTotal + ", Dealer's total: " + dealerTotal);
+        // In the case they both have the same number total they will tie and it will let us know
+        } else {
+            System.out.println("It's a tie! Both you and the dealer have: " + playerTotal);
+        }
+
+        scanner.close();
+    }
+
+    // Method to draw a card from the deck and remove it from the deck it will drawn from the deck and remove it from the deck
+    private static int drawCard(ArrayList<Integer> deck, Random random) {
+        int index = random.nextInt(deck.size());
+        int card = deck.get(index);
+        deck.remove(index);
+        return card;
+    }
+
+    // Method to get the value of a card 
+    private static int getCardValue(int card) {
+    	Scanner sc = new Scanner(System.in);
+        if (card > 10) {
+            return 10; // Face cards (J, Q, K) are worth 10
+        }
+		return card; 
+   
+ 
+}
+}
